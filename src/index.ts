@@ -221,7 +221,7 @@ export default Canister({
     return Result.Ok(`Reservation with ID ${transactionId} is on the way`);
   }),
 
-  driverArrived: update([text, text], Result(text, text), (driverId, transactionId) => {
+  driverArrived: update([text, text, float64], Result(text, text), (driverId, transactionId, price) => {
     if (!driverInStorage(driverId)){
       return Result.Err(`Driver not found!`);
     }
@@ -233,6 +233,7 @@ export default Canister({
       return Result.Err(`Reservation status is ${reservationStatus[reservation.status]}`);
     }
     reservation.status = 3;
+    reservation.price = price;
     reservationStorage.insert(reservation.id, reservation);
     return Result.Ok(`Reservation with ID ${transactionId} is on the way`);
   }),
