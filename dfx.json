@@ -1,0 +1,12 @@
+{
+    "canisters": {
+        "ICP-taxi-reservation": {
+            "type": "custom",
+            "main": "src/index.ts",
+            "candid": "src/index.did",
+            "build": "npx azle ICP-taxi-reservation --verbose",
+            "wasm": ".azle/ICP-taxi-reservation/ICP-taxi-reservation.wasm",
+            "gzip": true
+        }
+    }
+}
