@@ -1,13 +1,13 @@
 service: () -> {
-    createReservation: (text, text, text) -> (variant {Ok:text; Err:text});
-    driverArrived: (text, text) -> (variant {Ok:text; Err:text});
+    createReservation: (record {destination:text; customerId:text; pickupLocation:text}) -> (variant {Ok:text; Err:text});
+    driverArrived: (text, text, float64) -> (variant {Ok:text; Err:text});
     driverCancel: (text, text) -> (variant {Ok:text; Err:text});
     driverGetAllReservation: (text) -> (variant {Ok:vec record {id:text; status:int8; driverId:text; destination:text; reservationDate:nat64; customerId:text; price:float64; pickupLocation:text}; Err:text}) query;
     driverGetWaitingReservation: (text) -> (variant {Ok:vec record {id:text; status:int8; driverId:text; destination:text; reservationDate:nat64; customerId:text; price:float64; pickupLocation:text}; Err:text}) query;
     driverOnTheWay: (text, text) -> (variant {Ok:text; Err:text});
     driverTakeReservation: (text, text) -> (variant {Ok:text; Err:text});
-    registerCustomer: (text, text) -> (variant {Ok:text; Err:text});
-    registerDriver: (text, text) -> (variant {Ok:text; Err:text});
+    registerCustomer: (record {name:text; phoneNumber:text}) -> (variant {Ok:text; Err:text});
+    registerDriver: (record {name:text; phoneNumber:text}) -> (variant {Ok:text; Err:text});
     userGetAllReservation: (text) -> (variant {Ok:vec record {id:text; status:int8; driverId:text; destination:text; reservationDate:nat64; customerId:text; price:float64; pickupLocation:text}; Err:text}) query;
     userGetReservationById: (text, text) -> (variant {Ok:record {id:text; status:int8; driverId:text; destination:text; reservationDate:nat64; customerId:text; price:float64; pickupLocation:text}; Err:text}) query;
 }
